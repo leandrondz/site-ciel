@@ -6,63 +6,140 @@
 <title>Forum CIEL - Job Formation</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* Styles forum multi-sujets */
+/* ===== Global ===== */
+body {
+  margin:0;
+  font-family:Inter, Arial, Helvetica, sans-serif;
+  background:#0b0f17;
+  color:#e7eef6;
+}
+a { text-decoration:none; }
+
+/* ===== HEADER ===== */
+.site-header {
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index:1200;
+  background: linear-gradient(90deg,#003a78,#0066cc);
+}
+.header-inner {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  max-width:1200px;
+  margin:0 auto;
+  padding:12px 16px;
+}
+.brand { display:flex; align-items:center; gap:12px; }
+.logo-mark {
+  width:48px; height:48px;
+  background: linear-gradient(135deg,#003a78,#00f0d1);
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; color:#021020;
+}
+.brand-text h1 { margin:0; font-size:1rem; }
+.brand-text p { margin:0; font-size:0.82rem; color:#b6c7da; }
+
+nav.main-nav ul {
+  list-style:none;
+  display:flex;
+  gap:12px;
+  margin:0; padding:0;
+}
+nav.main-nav a {
+  color:white;
+  padding:8px 12px;
+  border-radius:8px;
+  font-weight:700;
+}
+
+.nav-toggle {
+  display:none;
+  font-size:1.5rem;
+  background:none;
+  border:none;
+  color:white;
+  cursor:pointer;
+}
+
+/* ===== MENU MOBILE ===== */
+@media(max-width:880px){
+  nav.main-nav {
+    display:none;
+    flex-direction:column;
+    position: fixed;
+    top:60px; left:0; right:0;
+    background:#0f1721;
+    padding:12px 16px;
+    z-index:1300;
+  }
+  nav.main-nav.open { display:flex; }
+  nav.main-nav ul { flex-direction:column; gap:8px; padding-left:12px; }
+  .nav-toggle { display:block; }
+}
+
+/* ===== Forum ===== */
 .forum-container {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 20px;
-  background: var(--card);
-  border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  max-width:900px;
+  margin:100px auto 30px auto;
+  padding:20px;
+  background:#0f1721;
+  border-radius:12px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.5);
 }
 .forum-container h2 {
-  color: var(--accent);
-  margin-bottom: 16px;
+  color:#00f0d1;
+  margin-bottom:16px;
 }
 .forum-form input, .forum-form textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 12px;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.02);
-  color: #e7eef6;
+  width:100%;
+  padding:8px;
+  margin-bottom:12px;
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.02);
+  color:#e7eef6;
 }
 .forum-form button {
-  background: var(--accent);
-  color: #021020;
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
+  background:#00f0d1;
+  color:#021020;
+  padding:10px 16px;
+  border-radius:8px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+  transition:all 0.2s;
 }
-.forum-form button:hover {
-  background: rgba(0,240,209,0.8);
-}
-.sujets {
-  margin-bottom: 20px;
-}
+.forum-form button:hover { background:rgba(0,240,209,0.8); }
+
+.sujets { margin-bottom:20px; }
 .sujet {
-  background: rgba(255,255,255,0.05);
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  cursor: pointer;
+  background:rgba(255,255,255,0.05);
+  padding:10px 14px;
+  border-radius:8px;
+  margin-bottom:12px;
+  cursor:pointer;
 }
-.sujet.active { background: rgba(0,240,209,0.1); }
-.reponses {
-  margin-top: 10px;
-  padding-left: 20px;
-}
+.sujet.active { background:rgba(0,240,209,0.1); }
+.reponses { margin-top:10px; padding-left:20px; }
 .message {
-  background: rgba(255,255,255,0.08);
-  padding: 8px 12px;
-  border-radius: 6px;
-  margin-bottom: 8px;
+  background:rgba(255,255,255,0.08);
+  padding:8px 12px;
+  border-radius:6px;
+  margin-bottom:8px;
 }
-.message strong { color: var(--accent); }
+.message strong { color:#00f0d1; }
+
+/* ===== Footer ===== */
+footer.site-footer {
+  background: linear-gradient(90deg,#003a78,#0066cc);
+  padding:18px;
+  text-align:center;
+  color:white;
+  margin-top:20px;
+  font-size:0.9rem;
+}
 </style>
 </head>
 <body>
@@ -72,8 +149,8 @@
     <div class="brand">
       <div class="logo-mark">CIEL</div>
       <div class="brand-text">
-        <h1>Forum CIEL</h1>
-        <p>Posez vos questions sur la formation et les métiers</p>
+        <h1>Section CIEL</h1>
+        <p>Cybersécurité · Informatique · Réseaux · Électronique</p>
       </div>
     </div>
     <button class="nav-toggle" aria-label="Menu">☰</button>
@@ -86,7 +163,7 @@
         <li><a href="contacts.html">Contacts</a></li>
         <li><a href="associations.html">Associations</a></li>
         <li><a href="galerie.html">Lycée-Fourcade</a></li>
-        <li><a href="job_formation.html" style="background:#00f0d1" class="btn-nav">Forum</a></li>
+        <li><a href="job_form.html" style="background:#00f0d1;color:#021020;"class="btn-nav">Forum</a></li>
       </ul>
     </nav>
   </div>
@@ -96,7 +173,6 @@
   <section class="forum-container">
     <h2>Forum - Créez un sujet ou répondez</h2>
 
-    <!-- Formulaire de création de sujet -->
     <form class="forum-form" id="sujetForm">
       <input type="text" id="pseudoSujet" placeholder="Votre pseudo" required>
       <input type="text" id="titreSujet" placeholder="Titre du sujet" required>
@@ -104,10 +180,8 @@
       <button type="submit">Créer le sujet</button>
     </form>
 
-    <!-- Liste des sujets -->
     <div class="sujets" id="listeSujets"></div>
 
-    <!-- Formulaire réponse -->
     <form class="forum-form" id="reponseForm" style="display:none;">
       <input type="text" id="pseudoReponse" placeholder="Votre pseudo" required>
       <textarea id="messageReponse" rows="3" placeholder="Votre réponse" required></textarea>
@@ -117,28 +191,28 @@
 </main>
 
 <footer class="site-footer">
-  <div class="footer-inner">
-    &copy; 2025 Section CIEL - Lycée Marie-Madeleine Fourcade / Étoile (Gardanne)
-  </div>
+  &copy; 2025 Section CIEL - Lycée Marie-Madeleine Fourcade / Étoile (Gardanne)
 </footer>
 
 <script>
-// ------------------ GESTION FORUM ------------------
+// Hamburger menu
+const navToggle = document.querySelector(".nav-toggle");
+const navMenu = document.querySelector(".main-nav");
+navToggle.addEventListener("click", () => { navMenu.classList.toggle("open"); });
+
+// Forum logic
 let sujets = JSON.parse(localStorage.getItem('forumSujets')) || [];
 const listeSujets = document.getElementById('listeSujets');
 const sujetForm = document.getElementById('sujetForm');
 const reponseForm = document.getElementById('reponseForm');
-
 let sujetSelectionne = null;
 
-// ------------ COMMANDE SECRÈTE POUR RESET TOTAL ------------
 function checkSecretCommand(pseudo, titre, contenu) {
   const secret = "efface_forum";
-
-  if (pseudo === secret || titre === secret || contenu === secret) {
+  if (pseudo===secret || titre===secret || contenu===secret) {
     localStorage.removeItem("forumSujets");
-    sujets = [];
-    sujetSelectionne = null;
+    sujets=[];
+    sujetSelectionne=null;
     afficherSujets();
     alert("✔ Le forum a été entièrement réinitialisé !");
     return true;
@@ -146,98 +220,67 @@ function checkSecretCommand(pseudo, titre, contenu) {
   return false;
 }
 
-// ------------ AFFICHAGE DES SUJETS ------------
 function afficherSujets() {
-  listeSujets.innerHTML = '';
-  sujets.forEach((sujet, index) => {
-    const divSujet = document.createElement('div');
+  listeSujets.innerHTML='';
+  sujets.forEach((sujet,index)=>{
+    const divSujet=document.createElement('div');
     divSujet.classList.add('sujet');
-    
-    if(index === sujetSelectionne) divSujet.classList.add('active');
-    
-    divSujet.innerHTML = `<strong>${sujet.titre}</strong> (par ${sujet.pseudo})`;
-    
-    divSujet.addEventListener('click', () => {
-      sujetSelectionne = index;
+    if(index===sujetSelectionne) divSujet.classList.add('active');
+    divSujet.innerHTML=`<strong>${sujet.titre}</strong> (par ${sujet.pseudo})`;
+    divSujet.addEventListener('click',()=>{
+      sujetSelectionne=index;
       afficherSujets();
       afficherReponses();
     });
-
     listeSujets.appendChild(divSujet);
   });
 }
 
-// ------------ AFFICHAGE DES RÉPONSES ------------
 function afficherReponses() {
-  if(sujetSelectionne === null) return;
-
-  document.querySelectorAll('.reponses').forEach(e => e.remove());
-
-  const sujet = sujets[sujetSelectionne];
-  const divReponses = document.createElement('div');
+  if(sujetSelectionne===null) return;
+  document.querySelectorAll('.reponses').forEach(e=>e.remove());
+  const sujet=sujets[sujetSelectionne];
+  const divReponses=document.createElement('div');
   divReponses.classList.add('reponses');
-
-  sujet.messages.forEach(msg => {
-    const divMsg = document.createElement('div');
+  sujet.messages.forEach(msg=>{
+    const divMsg=document.createElement('div');
     divMsg.classList.add('message');
-    divMsg.innerHTML = `<strong>${msg.pseudo}:</strong> ${msg.contenu}`;
+    divMsg.innerHTML=`<strong>${msg.pseudo}:</strong> ${msg.contenu}`;
     divReponses.appendChild(divMsg);
   });
-
   listeSujets.children[sujetSelectionne].appendChild(divReponses);
-  reponseForm.style.display = 'block';
+  reponseForm.style.display='block';
 }
 
-// ------------ CRÉATION DE SUJET ------------
-sujetForm.addEventListener('submit', function(e) {
+sujetForm.addEventListener('submit',function(e){
   e.preventDefault();
-  
-  const pseudo = document.getElementById('pseudoSujet').value.trim();
-  const titre = document.getElementById('titreSujet').value.trim();
-  const contenu = document.getElementById('contenuSujet').value.trim();
-
-  // Vérifie la commande secrète
-  if (checkSecretCommand(pseudo, titre, contenu)) {
-    sujetForm.reset();
-    return;
-  }
-
-  sujets.push({
-    pseudo: pseudo,
-    titre: titre,
-    messages: [{ pseudo: pseudo, contenu: contenu }]
-  });
-
-  localStorage.setItem('forumSujets', JSON.stringify(sujets));
-
+  const pseudo=document.getElementById('pseudoSujet').value.trim();
+  const titre=document.getElementById('titreSujet').value.trim();
+  const contenu=document.getElementById('contenuSujet').value.trim();
+  if(checkSecretCommand(pseudo,titre,contenu)){ sujetForm.reset(); return; }
+  sujets.push({ pseudo:pseudo, titre:titre, messages:[{pseudo:pseudo,contenu:contenu}] });
+  localStorage.setItem('forumSujets',JSON.stringify(sujets));
   sujetForm.reset();
-  sujetSelectionne = sujets.length - 1;
-
+  sujetSelectionne=sujets.length-1;
   afficherSujets();
   afficherReponses();
 });
 
-// ------------ ENVOI D'UNE RÉPONSE ------------
-reponseForm.addEventListener('submit', function(e) {
+reponseForm.addEventListener('submit',function(e){
   e.preventDefault();
-
-  const pseudo = document.getElementById('pseudoReponse').value.trim();
-  const contenu = document.getElementById('messageReponse').value.trim();
-
-  if(!pseudo || !contenu || sujetSelectionne === null) return;
-
-  sujets[sujetSelectionne].messages.push({ pseudo: pseudo, contenu: contenu });
-  localStorage.setItem('forumSujets', JSON.stringify(sujets));
-
-  document.getElementById('messageReponse').value = '';
-
+  const pseudo=document.getElementById('pseudoReponse').value.trim();
+  const contenu=document.getElementById('messageReponse').value.trim();
+  if(!pseudo || !contenu || sujetSelectionne===null) return;
+  sujets[sujetSelectionne].messages.push({pseudo:pseudo,contenu:contenu});
+  localStorage.setItem('forumSujets',JSON.stringify(sujets));
+  document.getElementById('messageReponse').value='';
   afficherReponses();
 });
 
-// ------------ AU CHARGEMENT ------------
 afficherSujets();
-if(sujets.length && sujetSelectionne !== null) afficherReponses();
-
+if(sujets.length && sujetSelectionne!==null) afficherReponses();
 </script>
+
 </body>
 </html>
+
