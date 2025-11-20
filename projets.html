@@ -1,11 +1,64 @@
 <!doctype html>
 <html lang="fr">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Projets CIEL</title>
-<link rel="stylesheet" href="style.css">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Section CIEL - Accueil</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/scrollreveal"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<style>
+/* ===== Global ===== */
+body {
+  margin:0; 
+  font-family:Inter,Arial,sans-serif; 
+  background:#0b0f17; 
+  color:#e7eef6;
+}
+a { text-decoration:none; }
+.btn { display:inline-block; padding:8px 16px; margin:4px; border-radius:6px; background:#00f0d1; color:#021020; font-weight:700; }
+.btn.secondary { background:#003a78; color:#fff; }
+.container { max-width:1200px; margin:0 auto; padding:0 16px; }
+.card { background:#0f1721; padding:16px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.5); margin-bottom:18px; }
+
+/* ===== Header ===== */
+.site-header { position:fixed; top:0; left:0; right:0; z-index:1200; background:linear-gradient(90deg,#003a78,#0066cc); }
+.header-inner { display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:12px 16px; }
+.brand { display:flex; align-items:center; gap:12px; }
+.logo-mark { width:48px; height:48px; background:linear-gradient(135deg,#003a78,#00f0d1); border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:700; color:#021020; }
+.brand-text h1 { margin:0; font-size:1rem; }
+.brand-text p { margin:0; font-size:0.82rem; color:#b6c7da; }
+
+nav.main-nav ul { list-style:none; display:flex; gap:12px; margin:0; padding:0; }
+nav.main-nav a { color:white; padding:8px 12px; border-radius:8px; font-weight:700; }
+.nav-toggle { display:none; font-size:1.5rem; background:none; border:none; color:white; cursor:pointer; }
+
+/* ===== Responsive ===== */
+@media(max-width:880px){
+  nav.main-nav { display:none; flex-direction:column; background:#0f1721; position:fixed; top:60px; left:0; right:0; padding:12px 0; z-index:1300; }
+  nav.main-nav.show { display:flex; }
+  nav.main-nav ul { flex-direction:column; gap:8px; padding-left:12px; }
+  .nav-toggle { display:block; }
+}
+
+/* ===== Gallery images ===== */
+.gallery {
+  display:flex; 
+  flex-wrap:wrap; 
+  gap:10px;
+}
+.gallery img {
+  width:100%; 
+  max-width:250px; 
+  height:150px; 
+  object-fit:cover; 
+  border-radius:8px;
+}
+</style>
 </head>
 <body>
+
 <header class="site-header">
   <div class="header-inner">
     <div class="brand">
@@ -15,12 +68,14 @@
         <p>Cybersécurité · Informatique · Réseaux · Électronique</p>
       </div>
     </div>
+    <!-- Bouton hamburger -->
     <button class="nav-toggle" aria-label="Menu">☰</button>
+    <!-- Menu principal -->
     <nav class="main-nav">
       <ul>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="formation.html">Formation</a></li>
-        <li><a href="projets.html"style="background:#00f0d1">Projets</a></li>
+        <li><a href="projets.html" style="background:#00f0d1">Projets</a></li>
         <li><a href="entreprises.html">Partenaires</a></li>
         <li><a href="contacts.html">Contacts</a></li>
         <li><a href="associations.html">Associations</a></li>
@@ -31,7 +86,7 @@
   </div>
 </header>
 
-<main class="container">
+<main class="container" style="padding-top:80px;">
   <section class="card">
     <h2>Projets & réalisations des élèves</h2>
     <p>La filière encourage projets techniques variés :</p>
@@ -49,35 +104,47 @@
       <li><strong>IoT</strong> — capteurs environnementaux, dashboard en temps réel.</li>
       <li><strong>Projet chef-d'œuvre</strong> — projet annuel avec documentation, démonstration, rapport technique.</li>
       <li><strong>Pare-feu / VPN (pfSense / OPNsense)</strong> — installation, règles, VPN site-à-site et accès distant.</li>
-  <li><strong>Audit de sécurité d’un poste</strong> — détection de failles, patching, rapport de recommandations.</li>
-  <li><strong>Gestion de parc informatique</strong> — déploiement d’images, inventaire, scripts d’automatisation (SCCM / Ansible).</li>
-  <li><strong>Serveur DNS / DHCP</strong> — configuration de zones internes, résilience, journalisation.</li>
-  <li><strong>Application mobile simple</strong> — formulaire, stockage local, publication (Android / Flutter).</li>
-  <li><strong>Mini-jeu</strong> — développement en Python ou JavaScript, scores, sauvegarde.</li>
-  <li><strong>Système CRUD avec base de données</strong> — création, lecture, mise à jour, suppression (MySQL / SQLite).</li>
-  <li><strong>Chat en réseau local</strong> — sockets, protocole simple, interface web ou console.</li>
-  <li><strong>Intranet d’entreprise</strong> — gestion utilisateurs, partage de documents, authentification.</li>
-  <li><strong>Site e-commerce simulé</strong> — catalogue, panier, administration, paiement fictif.</li>
-  <li><strong>Transmission radio / IoT RF</strong> — modules 433 MHz / LoRa, envoi et réception de données.</li>
-  <li><strong>Analyse de signaux audio</strong> — filtrage, spectrogramme, détection d’événements.</li>
-  <li><strong>Automatisation domotique</strong> — MQTT, capteurs, scenarii (éclairage, volets).</li>
-  <li><strong>Pilotage LED via web</strong> — interface de contrôle temps réel (WebSocket / HTTP).</li>
-  <li><strong>Contrôle d’accès RFID</strong> — lecture badges, base d’utilisateurs, logs.</li>
-  <li><strong>Station météo connectée</strong> — mesure T°C, humidité, pression, envoi sur serveur.</li>
-  <li><strong>Compteur de passage</strong> — capteur infrarouge, statistiques, graphique web.</li>
-  <li><strong>Suivi GPS</strong> — module GPS + transmission, tableau de suivi en ligne.</li>
-  <li><strong>Montage vidéo promotionnel</strong> — tournage, prise de son, montage, export pro.</li>
-  <li><strong>Studio d’enregistrement miniature</strong> — traitement audio, isolation, configuration micro.</li>
-  <li><strong>Alarme maison DIY</strong> — capteurs d’ouverture, sirène, alimentation secours.</li>
-  <li><strong>Joystick / contrôleur personnalisé</strong> — électronique, drivers, intégration PC.</li>
-  <li><strong>Système de commande vocale</strong> — reconnaissance simple et exécution d’actions locales.</li>
-  <li><strong>Tutoriels / documentation professionnelle</strong> — guides d’installation, procédures, schémas.</li>
-  <li><strong>Simulation service IT</strong> — gestion des tickets, SLA, rapports d’intervention.</li>
-  <li><em>… et bien plus encore selon votre créativité et vos compétences en CIEL !</em></li>
-</ul>
+      <li><strong>Audit de sécurité d’un poste</strong> — détection de failles, patching, rapport de recommandations.</li>
+      <li><strong>Gestion de parc informatique</strong> — déploiement d’images, inventaire, scripts d’automatisation (SCCM / Ansible).</li>
+      <li><strong>Serveur DNS / DHCP</strong> — configuration de zones internes, résilience, journalisation.</li>
+      <li><strong>Application mobile simple</strong> — formulaire, stockage local, publication (Android / Flutter).</li>
+      <li><strong>Mini-jeu</strong> — développement en Python ou JavaScript, scores, sauvegarde.</li>
+      <li><strong>Système CRUD avec base de données</strong> — création, lecture, mise à jour, suppression (MySQL / SQLite).</li>
+      <li><strong>Chat en réseau local</strong> — sockets, protocole simple, interface web ou console.</li>
+      <li><strong>Intranet d’entreprise</strong> — gestion utilisateurs, partage de documents, authentification.</li>
+      <li><strong>Site e-commerce simulé</strong> — catalogue, panier, administration, paiement fictif.</li>
+      <li><strong>Transmission radio / IoT RF</strong> — modules 433 MHz / LoRa, envoi et réception de données.</li>
+      <li><strong>Analyse de signaux audio</strong> — filtrage, spectrogramme, détection d’événements.</li>
+      <li><strong>Automatisation domotique</strong> — MQTT, capteurs, scenarii (éclairage, volets).</li>
+      <li><strong>Pilotage LED via web</strong> — interface de contrôle temps réel (WebSocket / HTTP).</li>
+      <li><strong>Contrôle d’accès RFID</strong> — lecture badges, base d’utilisateurs, logs.</li>
+      <li><strong>Station météo connectée</strong> — mesure T°C, humidité, pression, envoi sur serveur.</li>
+      <li><strong>Compteur de passage</strong> — capteur infrarouge, statistiques, graphique web.</li>
+      <li><strong>Suivi GPS</strong> — module GPS + transmission, tableau de suivi en ligne.</li>
+      <li><strong>Montage vidéo promotionnel</strong> — tournage, prise de son, montage, export pro.</li>
+      <li><strong>Studio d’enregistrement miniature</strong> — traitement audio, isolation, configuration micro.</li>
+      <li><strong>Alarme maison DIY</strong> — capteurs d’ouverture, sirène, alimentation secours.</li>
+      <li><strong>Joystick / contrôleur personnalisé</strong> — électronique, drivers, intégration PC.</li>
+      <li><strong>Système de commande vocale</strong> — reconnaissance simple et exécution d’actions locales.</li>
+      <li><strong>Tutoriels / documentation professionnelle</strong> — guides d’installation, procédures, schémas.</li>
+      <li><strong>Simulation service IT</strong> — gestion des tickets, SLA, rapports d’intervention.</li>
+      <li><em>… et bien plus encore selon votre créativité et vos compétences en CIEL !</em></li>
     </ul>
   </section>
 </main>
-<footer class="site-footer"><div class="footer-inner">&copy; 2025 Section CIEL - Projets</div></footer>
+
+<footer class="site-footer">
+  <div class="footer-inner">&copy; 2025 Section CIEL - Projets</div>
+</footer>
+
 <script src="js/script.js"></script>
-</body></html>
+
+<!-- Script hamburger -->
+<script>
+  const navToggle = document.querySelector('.nav-toggle');
+  const mainNav = document.querySelector('nav.main-nav');
+  navToggle.addEventListener('click', () => { mainNav.classList.toggle('show'); });
+</script>
+
+</body>
+</html>
