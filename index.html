@@ -1,20 +1,72 @@
-
-
-
-
-
 <!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Section CIEL - Accueil</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/scrollreveal"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<style>
+/* ===== Global ===== */
+body {
+  margin:0; font-family:Inter,Arial,sans-serif; background:#0b0f17; color:#e7eef6;
+}
+a { text-decoration:none; }
+.btn { display:inline-block; padding:8px 16px; margin:4px; border-radius:6px; background:#00f0d1; color:#021020; font-weight:700; }
+.btn.secondary { background:#003a78; color:#fff; }
+.container { max-width:1200px; margin:0 auto; padding:0 16px; }
+.card { background:#0f1721; padding:16px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.5); margin-bottom:18px; }
+
+/* ===== Header ===== */
+.site-header { position:fixed; top:0; left:0; right:0; z-index:1200; background:linear-gradient(90deg,#003a78,#0066cc); }
+.header-inner { display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:12px 16px; }
+.brand { display:flex; align-items:center; gap:12px; }
+.logo-mark { width:48px; height:48px; background:linear-gradient(135deg,#003a78,#00f0d1); border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:700; color:#021020; }
+.brand-text h1 { margin:0; font-size:1rem; }
+.brand-text p { margin:0; font-size:0.82rem; color:#b6c7da; }
+
+nav.main-nav ul { list-style:none; display:flex; gap:12px; margin:0; padding:0; }
+nav.main-nav a { color:white; padding:8px 12px; border-radius:8px; font-weight:700; }
+.nav-toggle { display:none; font-size:1.5rem; background:none; border:none; color:white; cursor:pointer; }
+
+/* ===== Hero Section ===== */
+.hero { display:flex; gap:16px; align-items:center; padding:100px 16px 40px 16px; flex-wrap:wrap; }
+.hero-left { flex:1 1 300px; }
+.hero-right { flex:1 1 300px; }
+.hero img { width:100%; border-radius:12px; height:auto; display:block; object-fit:cover; }
+.hero-cta .btn { margin-right:8px; margin-bottom:8px; }
+
+/* ===== Features ===== */
+.features { display:flex; gap:16px; justify-content:space-between; flex-wrap:wrap; margin-bottom:20px; }
+.feature { background:#0f1721; padding:16px; border-radius:12px; flex:1 1 250px; box-shadow:0 8px 20px rgba(0,0,0,0.3); }
+.feature h3 { margin-top:0; }
+.feature .btn { margin-top:8px; }
+
+/* ===== Gallery ===== */
+.gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+.gallery img { width:100%; border-radius:10px; display:block; object-fit:cover; }
+
+/* ===== Footer ===== */
+.site-footer { background:linear-gradient(90deg,#003a78,#0066cc); padding:14px; text-align:center; font-size:0.9rem; color:white; }
+
+/* ===== Responsive ===== */
+@media(max-width:880px){
+  nav.main-nav { display:none; flex-direction:column; background:#0f1721; position:fixed; top:60px; left:0; right:0; padding:12px 0; z-index:1300; }
+  nav.main-nav.show { display:flex; }
+  nav.main-nav ul { flex-direction:column; gap:8px; padding-left:12px; }
+  .nav-toggle { display:block; }
+}
+@media(max-width:600px){
+  .hero { padding:80px 12px 20px 12px; flex-direction:column; }
+  .hero-left, .hero-right { flex:1 1 100%; }
+  .features { flex-direction:column; }
+}
+</style>
 </head>
 <body>
+
 <header class="site-header">
   <div class="header-inner">
     <div class="brand">
@@ -27,7 +79,7 @@
     <button class="nav-toggle" aria-label="Menu">☰</button>
     <nav class="main-nav">
       <ul>
-        <li><a href="index.html"style="background:#00f0d1">Accueil</a></li>
+        <li><a href="index.html" style="background:#00f0d1">Accueil</a></li>
         <li><a href="formation.html">Formation</a></li>
         <li><a href="projets.html">Projets</a></li>
         <li><a href="entreprises.html">Partenaires</a></li>
@@ -39,10 +91,11 @@
     </nav>
   </div>
 </header>
+
 <main>
   <!-- Hero Section -->
   <section class="hero" aria-label="Présentation">
-    <div class="hero-left hero-inner">
+    <div class="hero-left">
       <h2>Construisez le numérique de demain</h2>
       <p class="lead">Formation pratique et professionnalisante en réseaux, électronique et cybersécurité. Projets réels, partenariats entreprises, stages.</p>
       <div class="hero-cta">
@@ -55,7 +108,7 @@
         <a class="btn secondary" href="galerie.html">Voir la galerie</a>
       </div>
     </div>
-    <div class="hero-right hero-card">
+    <div class="hero-right">
       <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&q=80&auto=format&fit=crop" alt="Atelier électronique">
     </div>
   </section>
@@ -63,22 +116,19 @@
   <!-- Features Section -->
   <section class="features" aria-label="Atouts">
     <div class="feature">
-      <div class="icon"></div>
       <h3>Formation professionnalisante</h3>
       <p>3 ans de Bac Pro + possibilité de BTS CIEL. Alternance projets/stages.</p>
-      <p><a class="btn secondary" href="formation.html">En savoir</a></p>
+      <a class="btn secondary" href="formation.html">En savoir</a>
     </div>
     <div class="feature">
-      <div class="icon"></div>
       <h3>Ateliers & TP</h3>
       <p>Câblage, soudure, prototypage Arduino, mise en service de serveurs, sécurité réseau.</p>
-      <p><a class="btn secondary" href="projets.html">Voir les projets</a></p>
+      <a class="btn secondary" href="projets.html">Voir les projets</a>
     </div>
     <div class="feature">
-      <div class="icon"></div>
       <h3>Partenariats</h3>
       <p>Collaboration avec entreprises locales pour stages et projets.</p>
-      <p><a class="btn secondary" href="entreprises.html">Nos partenaires</a></p>
+      <a class="btn secondary" href="entreprises.html">Nos partenaires</a>
     </div>
   </section>
 
@@ -92,7 +142,6 @@
         <img src="https://www.arccaptain.com/cdn/shop/articles/welding_rod_types.jpg?crop=center&height=2048&v=1751304887&width=2048" alt="Soudure">
         <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800&q=60&auto=format&fit=crop" alt="Serveur">
       </div>
-      <p style="margin-top:12px;color:var(--muted)"></p>
       <p style="margin-top:12px"><a class="btn" href="projets.html">Exemples de projets</a></p>
     </div>
   </section>
@@ -104,11 +153,12 @@
   </div>
 </footer>
 
-<script src="js/script.js"></script>
+<script>
+// ===== Menu Hamburger =====
+const navToggle = document.querySelector('.nav-toggle');
+const mainNav = document.querySelector('nav.main-nav');
+navToggle.addEventListener('click', () => { mainNav.classList.toggle('show'); });
+</script>
 </body>
 </html>
-
-
-
-
 
