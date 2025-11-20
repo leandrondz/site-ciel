@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Section CIEL - Accueil</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="logo-mark">CIEL</div>
+      <div class="brand-text">
+        <h1>Section CIEL</h1>
+        <p>Cybersécurité · Informatique · Réseaux · Électronique</p>
+      </div>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="formation.html">Formation</a></li>
+        <li><a href="projets.html">Projets</a></li>
+        <li><a href="entreprises.html">Partenaires</a></li>
+        <li><a href="contacts.html">Contacts</a></li>
+        <li><a href="associations.html">Associations</a></li>
+        <li><a href="galerie.html">Lycée-Fourcade</a></li>
+        <li><a href="job_form.html" class="btn-nav">Forum</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carte des lycées CIEL - France</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+
+
+
+<main style="margin-top:80px;"> <!-- Décalage pour le menu fixe -->
+  <section class="card" style="max-width:1200px;margin:0 auto;">
+    <h2 style="color:#00f0d1;margin-top:0">Carte des lycées CIEL</h2>
+    <p style="color:#98a0b3">Clique sur un point pour voir le nom et la ville du lycée.</p>
+    <div id="map" style="width:100%;height:740px;border-radius:10px;overflow:hidden"></div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  &copy; 2025 Section CIEL — Lycées
+</footer>
+
+<script>
+// Données des lycées
+const lycees = [
+  {nom:"Lycée du Rempart", ville:"Marseille", lat:43.2945, lon:5.3664},
+  {nom:"Lycée Marie-Madeleine Fourcade", ville:"Gardanne", lat:43.4410, lon:5.4580},
+  {nom:"Lycée Thiers", ville:"Marseille", lat:43.2983, lon:5.3763},
+  {nom:"Lycée Vauvenargues", ville:"Aix-en-Provence", lat:43.5297, lon:5.4474},
+  {nom:"Lycée Félix du Cesne", ville:"Toulon", lat:43.1242, lon:5.9280},
+  {nom:"Lycée Roland Garros", ville:"Le Tampon", lat:-21.2769, lon:55.5142},
+  {nom:"Lycée Joseph Gaillard", ville:"Fort-de-France", lat:14.6161, lon:-61.0585},
+  {nom:"Lycée International", ville:"Nice", lat:43.7102, lon:7.2620},
+  {nom:"Lycée de la Côte d'Azur", ville:"Sophia Antipolis", lat:43.6167, lon:7.0556},
+  {nom:"Lycée Jean Moulin", ville:"Montpellier", lat:43.6108, lon:3.8767},
+  {nom:"Lycée Jules Ferry", ville:"Montpellier", lat:43.6111, lon:3.8772},
+  {nom:"Lycée Léonard de Vinci", ville:"Montpellier", lat:43.6050, lon:3.8760},
+  {nom:"Lycée Raymond Naves", ville:"Toulouse", lat:43.6045, lon:1.4440},
+  {nom:"Lycée Pierre de Fermat", ville:"Toulouse", lat:43.6049, lon:1.4430},
+  {nom:"Lycée Daguin", ville:"Bordeaux", lat:44.8378, lon:-0.5792},
+  {nom:"Lycée Gustave Eiffel", ville:"Bordeaux", lat:44.8540, lon:-0.5660},
+  {nom:"Lycée Nelson Mandela", ville:"Nantes", lat:47.2184, lon:-1.5536},
+  {nom:"Lycée professionnel Bretagne Atlantique", ville:"Nantes", lat:47.2150, lon:-1.5500},
+  {nom:"Lycée Lillebonne", ville:"Lille", lat:50.6292, lon:3.0573},
+  {nom:"Lycée Pasteur", ville:"Calais", lat:50.9515, lon:1.8587},
+  {nom:"Lycée Louis Armand", ville:"Paris", lat:48.8472, lon:2.2850},
+  {nom:"Lycée Jules Ferry", ville:"Versailles", lat:48.8049, lon:2.1204},
+  {nom:"Lycée Newton", ville:"Clichy", lat:48.9036, lon:2.3079},
+  {nom:"Lycée professionnel Émile Mathis", ville:"Strasbourg", lat:48.5734, lon:7.7521},
+  {nom:"Lycée Charles De Gaulle", ville:"Reims", lat:49.2583, lon:4.0317},
+  {nom:"Lycée Camille See", ville:"Nancy", lat:48.6921, lon:6.1844},
+  {nom:"Lycée Marius Bouvier", ville:"Lyon", lat:45.7640, lon:4.8357},
+  {nom:"Lycée La Martinière", ville:"Lyon", lat:45.7600, lon:4.8350},
+  {nom:"Lycée Marie Curie", ville:"Valence", lat:44.9333, lon:4.8924},
+  {nom:"Lycée Charles Péguy", ville:"Orléans", lat:47.9029, lon:1.9093},
+  {nom:"Lycée Jules Renard", ville:"Dijon", lat:47.3220, lon:5.0415},
+  {nom:"Lycée Charles Coïc", ville:"Rennes", lat:48.1173, lon:-1.6778},
+  {nom:"Lycée Jean Macé", ville:"Brest", lat:48.3904, lon:-4.4861},
+  {nom:"Lycée Pascal Paoli", ville:"Corte", lat:42.3034, lon:9.1533},
+  {nom:"Lycée Giocante de Casabianca", ville:"Bastia", lat:42.6979, lon:9.4500},
+  {nom:"Lycée Toul", ville:"Toul", lat:48.6538, lon:5.8868},
+  {nom:"Lycée Ajaccio", ville:"Ajaccio", lat:41.9192, lon:8.7386},
+  {nom:"Lycée Digne-les-Bains", ville:"Digne-les-Bains", lat:44.0926, lon:6.2350},
+  {nom:"Lycée Gap", ville:"Gap", lat:44.5594, lon:6.0794},
+  {nom:"Lycée Arles", ville:"Arles", lat:43.6766, lon:4.6278},
+  {nom:"Lycée Tarbes", ville:"Tarbes", lat:43.2334, lon:-0.0729},
+  {nom:"Lycée Albi", ville:"Albi", lat:43.9289, lon:2.1480},
+  {nom:"Lycée Béziers", ville:"Béziers", lat:43.3440, lon:3.2158},
+  {nom:"Lycée Perpignan", ville:"Perpignan", lat:42.6887, lon:2.8948},
+  {nom:"Lycée Avignon", ville:"Avignon", lat:43.9493, lon:4.8055}
+];
+
+const map = L.map('map').setView([46.5, 2.2], 6);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 18,
+  attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+const blueIcon = L.icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconSize: [25,41],
+  iconAnchor: [12,41],
+  popupAnchor: [1,-34],
+  shadowSize: [41,41]
+});
+
+lycees.forEach(l => {
+  const jitter = 0.001 + Math.random()*0.006;
+  const angle = Math.random()*Math.PI*2;
+  const lat = l.lat + Math.cos(angle)*jitter;
+  const lon = l.lon + Math.sin(angle)*jitter;
+  L.marker([lat, lon], {icon: blueIcon}).addTo(map)
+    .bindPopup(`<strong>${l.nom}</strong><br>${l.ville}`);
+});
+</script>
+
+<script src="js/script.js"></script> <!-- pour le menu hamburger -->
+</body>
+</html>
