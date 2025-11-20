@@ -3,13 +3,106 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Section CIEL - Accueil</title>
+<title>Associations - CIEL</title>
 <link rel="stylesheet" href="style.css">
-<script src="https://unpkg.com/scrollreveal"></script>
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<style>
+  body {
+    margin:0;
+    font-family: Inter, Arial, sans-serif;
+    background:#0b0f17;
+    color:#e7eef6;
+  }
+
+  .site-header {
+    position: fixed;
+    top:0; left:0; right:0;
+    z-index: 1200;
+    background: linear-gradient(90deg,#003a78,#0066cc);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin:0 auto;
+    padding: 12px 16px;
+  }
+
+  .brand { display:flex; align-items:center; gap:12px; }
+  .logo-mark {
+    width:48px; height:48px;
+    background: linear-gradient(135deg,#003a78,#00f0d1);
+    border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; color:#021020;
+  }
+  .brand-text h1 { margin:0; font-size:1rem; }
+  .brand-text p { margin:0; font-size:0.82rem; color:#b6c7da; }
+
+  nav.main-nav ul {
+    list-style:none;
+    display:flex;
+    gap:12px;
+    margin:0; padding:0;
+  }
+  nav.main-nav a {
+    color:white;
+    padding:8px 12px;
+    border-radius:8px;
+    font-weight:700;
+    text-decoration:none; /* retire le soulignement */
+  }
+
+  .nav-toggle {
+    display:none;
+    font-size:1.5rem;
+    background:none;
+    border:none;
+    color:white;
+    cursor:pointer;
+  }
+
+  /* Menu mobile */
+  @media(max-width:880px){
+    nav.main-nav {
+      display:none;
+      flex-direction:column;
+      position: fixed;
+      top:60px; left:0; right:0;
+      background:#0f1721;
+      padding:12px 16px;
+      z-index:1300;
+    }
+    nav.main-nav.open { display:flex; }
+    nav.main-nav ul { flex-direction:column; gap:8px; padding-left:12px; }
+    .nav-toggle { display:block; }
+  }
+
+  main.container {
+    max-width:1200px;
+    margin:100px auto 24px auto;
+    padding:0 18px;
+  }
+
+  .card {
+    background:#0f1721;
+    padding:18px;
+    border-radius:12px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.5);
+  }
+
+  footer.site-footer {
+    background: linear-gradient(90deg,#003a78,#0066cc);
+    padding:18px;
+    text-align:center;
+    color:white;
+    margin-top:20px;
+  }
+</style>
 </head>
 <body>
+
 <header class="site-header">
   <div class="header-inner">
     <div class="brand">
@@ -27,39 +120,13 @@
         <li><a href="projets.html">Projets</a></li>
         <li><a href="entreprises.html">Partenaires</a></li>
         <li><a href="contacts.html">Contacts</a></li>
-        <li><a href="associations.html"style="background:#00f0d1">Associations</a></li>
+        <li><a href="associations.html" style="background:#00f0d1;color:#021020;">Associations</a></li>
         <li><a href="galerie.html">Lycée-Fourcade</a></li>
         <li><a href="job_form.html" class="btn-nav">Forum</a></li>
       </ul>
     </nav>
   </div>
 </header>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!doctype html>
-<html lang='fr'>
-<head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>Associations - CIEL</title>
-<link rel='stylesheet' href='css/style.css'>
-</head>
-<body>
-
 
 <main class="container">
   <section class="card">
@@ -75,5 +142,20 @@
     <p>Les élèves peuvent rejoindre les clubs après inscription. Les clubs participent à des salons, hackathons et journées portes ouvertes.</p>
   </section>
 </main>
-<footer class="site-footer"><div class="footer-inner">&copy; 2025 Section CIEL - Associations</div></footer>
-</body></html>
+
+<footer class="site-footer">
+  &copy; 2025 Section CIEL - Associations
+</footer>
+
+<script>
+  // Script hamburger
+  const navToggle = document.querySelector(".nav-toggle");
+  const navMenu = document.querySelector(".main-nav");
+  navToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("open");
+  });
+</script>
+
+</body>
+</html>
+
